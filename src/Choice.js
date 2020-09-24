@@ -1,7 +1,8 @@
 import React from "react";
-class Choice extends React.Component {
+class Choice extends React.PureComponent {
   render() {
-    return <li>{this.props.dataList.title}</li>;
+    console.log("Choice COmponent Render");
+    return <li>{this.props.name}</li>;
   }
 }
 
