@@ -1,14 +1,16 @@
 import React from "react";
 import CounteruseState from "./CounteruseState";
 import CounterPrevState from "./CounterPrevState";
-import UseStateObject from "./useStateObject";
+import UseStateObject from "./UseStateObject";
+import UseStateArray from "./UseStateArray";
 class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <CounteruseState />
+        {/* <CounteruseState />
         <CounterPrevState />
-        <UseStateObject />
+        <UseStateObject /> */}
+        <UseStateArray />
       </React.Fragment>
     );
   }

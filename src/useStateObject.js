@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const useStateObject = () => {
+const UseStateObject = () => {
   const [name, setName] = useState({ firstname: "", lastname: "" });
 
   return (
@@ -25,4 +25,4 @@ const useStateObject = () => {
   );
 };
 
-export default useStateObject;
+export default UseStateObject;
