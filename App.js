@@ -1,54 +1,39 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import http from "./Helpers/http";
-import { StyleSheet, Text, View, TextInput, Button, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  Image,
+  ScrollView,
+} from "react-native";
+import Listview from "./components/Listview";
+import Search from "./components/Search";
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-export default function App() {
-  const [itemName, setItem] = useState("");
-  const [itemList, setList] = useState([]);
+    this.state = {
+      itemName: "",
+      itemList: [],
+    };
+  }
 
-  const addNewItem = async () => {
-    try {
-      const response = await http.get("/search/photos", {
-        params: { query: itemName },
-      });
-      setList(response.data.results);
-      setItem("");
-    } catch (error) {}
+  setItemList = (itemInfos) => {
+    this.setState({ itemList: itemInfos });
   };
 
-  const ItemRenderContent = () => {
-    return itemList.map((item, i) => {
-      return (
-        <View style={styles.container} key={i}>
-          <Image
-            source={{
-              uri: item.urls.small,
-            }}
-            style={styles.photo}
-          />
-          <View style={styles.container_text}>
-            <Text style={styles.title}>{item.user.name}</Text>
-            <Text style={styles.description}>{item.alt_description}</Text>
-          </View>
-        </View>
-      );
-    });
-  };
-
-  return (
-    <View style={styles.screen}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.inputTextStyle}
-          value={itemName}
-          onChange={(e) => setItem(e.target.value)}
-        ></TextInput>
-        <Button style={styles.buttonStyle} title="Add" onPress={addNewItem} />
+  render() {
+    return (
+      <View style={styles.screen}>
+        <Search onSetItem={this.setItemList} />
+        <Listview itemList={this.state.itemList} />
       </View>
-      {ItemRenderContent()}
-    </View>
-  );
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -68,35 +53,6 @@ const styles = StyleSheet.create({
   buttonStyle: {},
 
   listContainer: {},
-
-  container: {
-    flex: 1,
-    flexDirection: "row",
-    padding: 10,
-    marginLeft: 16,
-    marginRight: 16,
-    marginTop: 8,
-    marginBottom: 8,
-    borderRadius: 5,
-    backgroundColor: "#FFF",
-    elevation: 2,
-  },
-  title: {
-    fontSize: 16,
-    color: "#000",
-  },
-  container_text: {
-    flex: 1,
-    flexDirection: "column",
-    marginLeft: 12,
-    justifyContent: "center",
-  },
-  description: {
-    fontSize: 11,
-    fontStyle: "italic",
-  },
-  photo: {
-    height: 50,
-    width: 50,
-  },
 });
+
+export default App;
