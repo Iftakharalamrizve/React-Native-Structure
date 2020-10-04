@@ -17,8 +17,8 @@ class Search extends React.Component {
         const response = await http.get("/search/photos", {
           params: { query: this.state.item },
         });
-        this.setState({ item: "" });
         this.props.onSetItem(response.data.results);
+        this.setState({ item: "" });
       } catch (error) {}
     };
 
@@ -27,7 +27,7 @@ class Search extends React.Component {
         <TextInput
           style={styles.inputTextStyle}
           value={this.state.itemName}
-          onChange={(e) => this.setState({ item: e.target.value })}
+          onChangeText={(item) => this.setState({ item })}
         ></TextInput>
         <Button style={styles.buttonStyle} title="Add" onPress={searchItem} />
       </View>

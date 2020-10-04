@@ -1,6 +1,14 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  SafeAreaView,
+  FlatList,
+} from "react-native";
 
 class Listview extends React.Component {
   constructor(props) {
@@ -9,22 +17,45 @@ class Listview extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        {this.props.itemList.map((item, i) => (
-          <View style={styles.container} key={i}>
-            <Image
-              source={{
-                uri: item.urls.small,
-              }}
-              style={styles.photo}
-            />
-            <View style={styles.container_text}>
-              <Text style={styles.title}>{item.user.name}</Text>
-              <Text style={styles.description}>{item.alt_description}</Text>
+      <View>
+        {/* <ScrollView>
+          {this.props.itemList.map((item, i) => (
+            <View style={styles.container} key={i}>
+              <Image
+                source={{
+                  uri: item.urls.small,
+                }}
+                style={styles.photo}
+              />
+              <View style={styles.container_text}>
+                <Text style={styles.title}>{item.user.name}</Text>
+                <Text style={styles.description}>{item.alt_description}</Text>
+              </View>
             </View>
-          </View>
-        ))}
-      </ScrollView>
+          ))}
+        </ScrollView> */}
+        <SafeAreaView>
+          <FlatList
+            data={this.props.itemList}
+            renderItem={(item) => (
+              <View style={styles.container}>
+                <Image
+                  source={{
+                    uri: item.item.urls.small,
+                  }}
+                  style={styles.photo}
+                />
+                <View style={styles.container_text}>
+                  <Text style={styles.title}>{item.item.user.name}</Text>
+                  <Text style={styles.description}>
+                    {item.item.alt_description}
+                  </Text>
+                </View>
+              </View>
+            )}
+          ></FlatList>
+        </SafeAreaView>
+      </View>
     );
   }
 }
