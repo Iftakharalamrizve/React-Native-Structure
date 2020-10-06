@@ -18,22 +18,6 @@ class Listview extends React.Component {
   render() {
     return (
       <View>
-        {/* <ScrollView>
-          {this.props.itemList.map((item, i) => (
-            <View style={styles.container} key={i}>
-              <Image
-                source={{
-                  uri: item.urls.small,
-                }}
-                style={styles.photo}
-              />
-              <View style={styles.container_text}>
-                <Text style={styles.title}>{item.user.name}</Text>
-                <Text style={styles.description}>{item.alt_description}</Text>
-              </View>
-            </View>
-          ))}
-        </ScrollView> */}
         <SafeAreaView>
           <FlatList
             data={this.props.itemList}

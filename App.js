@@ -1,7 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, View, TextInput, Button, ScrollView } from "react-native";
-import ScrollViewPage from "./components/ScrollVIewPage";
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  Button,
+  ScrollView,
+  Text,
+} from "react-native";
+import Header from "./components/Header";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +16,8 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.maincontainer}>
-        <ScrollViewPage />
+        <Header />
+        <Text>dsfds</Text>
       </View>
     );
   }
@@ -19,7 +26,6 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   maincontainer: {
     flex: 1,
-    alignItems: "center",
   },
 });
 
