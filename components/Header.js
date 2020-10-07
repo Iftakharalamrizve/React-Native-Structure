@@ -18,14 +18,15 @@ class Search extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>Datasoft</Text>
-        <View style={styles.searchSection}>
-          <TextInput style={styles.searchInput} placeholder="Search Item..." />
-          <TouchableHighlight style={styles.searchIcon}>
-            <Text>Search</Text>
-          </TouchableHighlight>
+        <View style={styles.cnt1}>
+          <Text>1</Text>
         </View>
-        <Image style={styles.logo} source={require("../assets/cart.png")} />
+        <View style={styles.cnt1}>
+          <Text>2</Text>
+        </View>
+        <View style={styles.cnt1}>
+          <Text>3</Text>
+        </View>
       </View>
     );
   }
@@ -37,39 +38,22 @@ const styles = StyleSheet.create({
     width: Dimensions.get("screen").width,
     marginTop: 25,
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
     padding: 10,
     borderBottomWidth: 3,
     borderColor: "#ccc",
+    backgroundColor: "#B8C6FA",
   },
-  logo: {
+  cnt1: {
     flex: 1,
-    height: 52,
-    marginLeft: 15,
+    backgroundColor: "orange",
   },
-  title: {
+  cnt2: {
     flex: 2,
-    textAlign: "left",
-    fontSize: 20,
+    backgroundColor: "red",
   },
-  searchSection: {
-    flex: 3,
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  searchIcon: {
-    // flex: 3,
-    // flexDirection: "row",
-    // alignItems: "center",
-  },
-  searchInput: {
-    flex: 3,
-    alignItems: "center",
-    height: 30,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-    borderStyle: "dotted",
+  cnt3: {
+    flex: 1,
+    backgroundColor: "green",
   },
 });
 
