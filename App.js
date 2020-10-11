@@ -1,32 +1,21 @@
+import { StatusBar } from "expo-status-bar";
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TextInput,
-  Button,
-  ScrollView,
-  Text,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import Header from "./components/Header";
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+import Tabbar from "./components/Tabbar";
 
-  render() {
-    return (
-      <View style={styles.maincontainer}>
-        <Header />
-        <Text>dsfds</Text>
-      </View>
-    );
-  }
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Header />
+      <Tabbar />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  maincontainer: {
+  container: {
     flex: 1,
+    backgroundColor: "#fff",
   },
 });
-
-export default App;
