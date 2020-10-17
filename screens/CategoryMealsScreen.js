@@ -8,6 +8,7 @@ export default class CategoryMealsScreen extends Component {
   }
   render() {
     var catId = this.props.route.params.categoryId;
+    console.log(catId)
     const displayedMeals = MEALS.filter(
       meal => meal.categoryIds.indexOf(catId) >= 0
     );

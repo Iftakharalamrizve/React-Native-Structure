@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text ,FlatList  } from 'react-native';
-// import HeaderButton from '../components/HeaderButton';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity
+} from 'react-native';
+import HeaderButton from '../components/HeaderButton';
 import { CATEGORIES } from '../data/dummy-data';
 import CategoryGridTile from '../components/CategoryGridTile';
 
-export default class CategoriesScreen extends Component {
+class CategoriesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +26,8 @@ export default class CategoriesScreen extends Component {
           color={itemData.item.color}
           onSelect={() => {
             this.props.navigation.navigate('CategoryMeals',{
-                categoryId: itemData.item.id
+              categoryId: itemData.item.id,
+              categoryTitle:itemData.item.title
               });
           }}
         />
@@ -37,3 +44,29 @@ export default class CategoriesScreen extends Component {
     );
   }
 }
+CategoriesScreen.navigationOptions = navData => {
+  return {
+    headerTitle: 'Meal Categories',
+    headerLeft: (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Menu"
+          iconName="ios-menu"
+          onPress={() => {
+            navData.navigation.toggleDrawer();
+          }}
+        />
+      </HeaderButtons>
+    )
+  };
+};
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
+
+export default CategoriesScreen;
