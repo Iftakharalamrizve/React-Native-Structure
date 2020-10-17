@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text ,FlatList  } from 'react-native';
+// import HeaderButton from '../components/HeaderButton';
+import { CATEGORIES } from '../data/dummy-data';
+import CategoryGridTile from '../components/CategoryGridTile';
 
 export default class CategoriesScreen extends Component {
   constructor(props) {
@@ -9,10 +12,28 @@ export default class CategoriesScreen extends Component {
   }
 
   render() {
+
+     const renderGridItem = itemData => {
+      return (
+        <CategoryGridTile
+          title={itemData.item.title}
+          color={itemData.item.color}
+          onSelect={() => {
+            this.props.navigation.navigate('CategoryMeals',{
+                categoryId: itemData.item.id
+              });
+          }}
+        />
+      );
+     };
+    
     return (
-      <View>
-        <Text > CategoridfdsfsdfsdfsdfesScreen </Text>
-      </View>
+      <FlatList
+        keyExtractor={(item, index) => item.id}
+        data={CATEGORIES}
+        renderItem={renderGridItem}
+        numColumns={2}
+      />
     );
   }
 }

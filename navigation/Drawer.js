@@ -5,16 +5,16 @@ import CategoriesScreen from '../screens/CategoriesScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import BottomTabBar from './BottomTabBar'
+import Colors from '../constants/Colors';
 export default class Drawer extends Component {
   
     render() {
       const Drawer = createDrawerNavigator();
       return (
         <>
-        <Drawer.Navigator initialRouteName="Meals">
+        <Drawer.Navigator initialRouteName="Meals" drawerContentOptions={{activeTintColor:Colors.accentColor}}>
             <Drawer.Screen name="Meals" component={BottomTabBar} />
             <Drawer.Screen name="Filter" component={FiltersScreen} />
-            <Drawer.Screen name="Details" component={MealDetailScreen} />
         </Drawer.Navigator>
         </>
     );
