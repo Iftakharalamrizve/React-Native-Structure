@@ -6,7 +6,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import CategoriesScreen from '../screens/CategoriesScreen';
 import FavoritesScreen from '../screens/FavoritesScreen';
 import MealsNavigator from './MealsNavigator'
-
+import FavNavigator from './FavNavigator'
 export default class BottomTabBar extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ export default class BottomTabBar extends Component {
           />
           <Tab.Screen
               name="Favorites"
-              component={FavoritesScreen}
+              component={FavNavigator}
               options={{
               tabBarLabel: Platform.OS === 'android' ? (
                   <Text  >Favorites</Text>
