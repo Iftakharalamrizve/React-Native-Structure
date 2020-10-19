@@ -1,16 +1,25 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
-import MealsNavigator from './navigation/MealsNavigator'
-class App extends React.Component{
+import { StatusBar } from 'expo-status-bar';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View } from 'react-native';
+import Navigator from './navigation/Navigator';
+
+export default class App extends Component {
   constructor(props){
     super(props);
   }
-
-  render(){
-    return(
-      <MealsNavigator />
-    );
+  render() {
+    return (
+      <Navigator />
+    )
   }
 }
 
-export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
