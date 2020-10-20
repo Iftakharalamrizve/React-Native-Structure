@@ -14,16 +14,9 @@ export default class MealsNavigator extends Component {
         super(props)
     }
 
+    
+
     render() {
-    //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-    //     <Item
-    //       title="Favorite"
-    //       iconName="ios-star"
-    //       onPress={() => {
-    //         console.log('Mark as favorite!');
-    //       }}
-    //     />
-    //   </HeaderButtons>
         const Stack = createStackNavigator();
         const defaultStackNavOptions = {
             headerStyle: {
@@ -61,7 +54,7 @@ export default class MealsNavigator extends Component {
                           title="Favorite"
                           iconName="ios-star"
                           onPress={() => {
-                            console.log('Mark as favorite!');
+                            console.log(this.props);
                           }}
                         />
                       </HeaderButtons>

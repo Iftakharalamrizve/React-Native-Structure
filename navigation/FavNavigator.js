@@ -41,7 +41,17 @@ export default class FavNavigator extends Component {
                         </HeaderButtons>
                     )
                 }} />
-                <Stack.Screen name="MealDetail" component={MealDetailScreen} options={({ route }) => ({ title: route.params.mealTitle  })} />
+                <Stack.Screen name="MealDetail" component={MealDetailScreen} options={({ route }) => ({ title: route.params.mealTitle , headerRight:()=> (
+                        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                        <Item
+                          title="Favorite"
+                          iconName="ios-star"
+                          onPress={() => {
+                            console.log('Mark as favorite!');
+                          }}
+                        />
+                      </HeaderButtons>
+                    ) })} />
             </Stack.Navigator>
         )
     }
