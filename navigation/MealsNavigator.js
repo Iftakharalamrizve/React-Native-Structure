@@ -1,5 +1,6 @@
 
-import React, { Component } from 'react'
+import React, { useEffect, useCallback,useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { View, Text , Platform , Button } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import CategoriesScreen from '../screens/CategoriesScreen';
@@ -8,15 +9,26 @@ import HeaderButton from '../components/HeaderButton'
 import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailScreen';
 import Colors from '../constants/Colors'
-export default class MealsNavigator extends Component {
+const MealsNavigator = (props)=> {
+        const [currentMealIsFavorite,setFav] = useState(true);
+        const mealId = props.route.params.mealId; 
+        const dispatch = useDispatch();
 
-    constructor(props) {
-        super(props)
-    }
+        const toggleFavoriteHandler = useCallback(() => {
+            dispatch(toggleFavorite(mealId));
+        }, [dispatch, mealId]);
 
-    
+        useEffect(() => {
+            // props.navigation.setParams({ mealTitle: selectedMeal.title });
+            props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
+          }, [toggleFavoriteHandler]);
 
-    render() {
+          
+        useEffect(() => {
+            props.navigation.setParams({ isFav: currentMealIsFavorite });
+          }, [currentMealIsFavorite]);
+        
+
         const Stack = createStackNavigator();
         const defaultStackNavOptions = {
             headerStyle: {
@@ -31,6 +43,13 @@ export default class MealsNavigator extends Component {
             headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
             // headerTitle: ''
         };
+
+        const Favourite = ()=>{
+            const isFavorite = props.route.params.isFav;
+            return isFavorite?'ios-star':'ios-star-outline'
+        }
+        
+        // const isFavorite = props.route.params.isFav;
         return (
              <Stack.Navigator initialRouteName="Categories" screenOptions={defaultStackNavOptions}>
                 <Stack.Screen name="Categories" component={CategoriesScreen}  options={{
@@ -41,7 +60,7 @@ export default class MealsNavigator extends Component {
                             title="Menu"
                             iconName="ios-menu"
                             onPress={() => {
-                                this.props.navigation.toggleDrawer();
+                                props.navigation.toggleDrawer();
                             }}
                             />
                         </HeaderButtons>
@@ -52,14 +71,15 @@ export default class MealsNavigator extends Component {
                         <HeaderButtons HeaderButtonComponent={HeaderButton}>
                         <Item
                           title="Favorite"
-                          iconName="ios-star"
+                          iconName={Favourite()}
                           onPress={() => {
-                            console.log(this.props);
+                            setFav(true)
                           }}
                         />
                       </HeaderButtons>
                     ) })} />
             </Stack.Navigator>
-        )
-    }
+        );
 }
+
+export default MealsNavigator;
