@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MealList from '../components/MealList';
-import { MEALS } from '../data/dummy-data';
+import DefaultText from '../components/DefaultText';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux'
 
  class FavoritesScreen extends Component {
@@ -23,7 +24,13 @@ import { connect } from 'react-redux'
     //   } 
     //   return false;
     // })
-    console.log(favMeals)
+    if (FavMealList.length === 0 || !FavMealList) {
+    return (
+      <View style={styles.content}>
+        <DefaultText>No favorite meals found. Start adding some!</DefaultText>
+      </View>
+    );
+  }
     return (
       <MealList listData={FavMealList} navigation={this.props.navigation} />
     );
@@ -37,5 +44,13 @@ const mapStateToProps = (state)=>{
     filterMeal:state.filteredMeals
   }
 }
+
+const styles = StyleSheet.create({
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 export default connect(mapStateToProps)(FavoritesScreen);
