@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Switch, Platform } from 'react-native';
+import {Platform } from 'react-native';
 import { HeaderButtons,Item } from 'react-navigation-header-buttons';
 
 import HeaderButton from '../components/HeaderButton';
@@ -26,7 +26,7 @@ export default class FiltersNavigator extends Component {
         };
         return (
              <Stack.Navigator  screenOptions={defaultStackNavOptions}>
-                <Stack.Screen name="Filters" component={FiltersScreen}  options={{
+                <Stack.Screen name="Filters" component={FiltersScreen} options={{
                     headerTitle: 'Filter Items',
                     headerLeft:()=> (
                         <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -38,17 +38,8 @@ export default class FiltersNavigator extends Component {
                             }}
                             />
                         </HeaderButtons>
-                    ),
-                    headerRight: () => (
-                        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                            <Item
-                            title="Save"
-                            iconName="ios-save"
-                            // onPress={route.params.save}
-                            />
-                        </HeaderButtons>
-                    ),
-                }}/>
+                    )
+                }} />
             </Stack.Navigator>
         )
     }

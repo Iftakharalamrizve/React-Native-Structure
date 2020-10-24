@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import MealList from '../components/MealList';
 import { MEALS } from '../data/dummy-data';
+import { connect } from 'react-redux'
 
-
-export default class FavoritesScreen extends Component {
+ class FavoritesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,9 +11,31 @@ export default class FavoritesScreen extends Component {
   }
 
   render() {
-    const favMeals = MEALS.filter(meal => meal.id === 'm1' || meal.id === 'm2');
+    var FavMealList = this.props.list;
+    //  const favMeals = [FavMealList.filter(meal => availableMeal.indexOf(meal.id) != -1)];
+    // const favMeals = FavMealList.filter((meal) => {
+    //   this.props.filterMeal.find()
+    // })
+    // var self = this;
+    // const favMeals = FavMealList.filter(meal => {
+    //   if (self.props.filterMeal.indexOf(meal.id) != -1) {
+    //     return true;
+    //   } 
+    //   return false;
+    // })
+    console.log(favMeals)
     return (
-      <MealList listData={favMeals} navigation={this.props.navigation} />
+      <MealList listData={FavMealList} navigation={this.props.navigation} />
     );
   }
 }
+
+
+const mapStateToProps = (state)=>{
+  return{
+    list: state.favoriteMeals,
+    filterMeal:state.filteredMeals
+  }
+}
+
+export default connect(mapStateToProps)(FavoritesScreen);
