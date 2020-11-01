@@ -44,22 +44,6 @@ class CategoriesScreen extends Component {
     );
   }
 }
-CategoriesScreen.navigationOptions = navData => {
-  return {
-    headerTitle: 'Meal Categories',
-    headerLeft: (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        <Item
-          title="Menu"
-          iconName="ios-menu"
-          onPress={() => {
-            navData.navigation.toggleDrawer();
-          }}
-        />
-      </HeaderButtons>
-    )
-  };
-};
 
 const styles = StyleSheet.create({
   screen: {
