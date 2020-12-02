@@ -11,7 +11,8 @@ import MealDetailScreen from '../screens/MealDetailScreen';
 import Colors from '../constants/Colors'
 const MealsNavigator = (props)=> {
         const [currentMealIsFavorite,setFav] = useState(true);
-        const mealId = props.route.params.mealId; 
+        console.log(props)
+        const mealId = 1; 
         const dispatch = useDispatch();
 
         const toggleFavoriteHandler = useCallback(() => {
@@ -23,7 +24,7 @@ const MealsNavigator = (props)=> {
             props.navigation.setParams({ toggleFav: toggleFavoriteHandler });
           }, [toggleFavoriteHandler]);
 
-          
+
         useEffect(() => {
             props.navigation.setParams({ isFav: currentMealIsFavorite });
           }, [currentMealIsFavorite]);
